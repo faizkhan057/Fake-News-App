@@ -13,7 +13,7 @@ st.set_page_config(
 st.markdown("""
     <h1 style='text-align: center;'>📰 Fake News Detection System</h1>
     <p style='text-align: center; color: grey;'>
-    AI Powered | Logistic Regression | TF-IDF
+    AI Powered | Logistic Regression | TF-IDF | Build By Faiz
     </p>
 """, unsafe_allow_html=True)
 
@@ -61,6 +61,7 @@ if st.button("Check News"):
         st.write(f"### Confidence Score: {round(confidence,2)}%")
         st.progress(int(confidence))
     
+
 
 
 
