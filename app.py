@@ -35,3 +35,4 @@ if st.button("check news"):
         st.error("🔴 This is Fake News")
         st.write("Confidence:", round(probability[0]*100, 2), "%")
 
+
