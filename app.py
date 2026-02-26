@@ -45,9 +45,11 @@ if st.button("Check News"):
 
     else:
         cleaned = clean_text(news_input)
-        vectorized = vectorizer.transform([cleaned])
-        prediction = model.predict(vectorized)
-        probability = model.predict_proba(vectorized)[0]
+
+        with st.spinner("🔎 Analyzing News... Please wait"):
+            vectorized = vectorizer.transform([cleaned])
+            prediction = model.predict(vectorized)
+            probability = model.predict_proba(vectorized)[0]
 
         if int(prediction[0]) == 1:
             st.success("🟢 This is Real News")
@@ -59,6 +61,7 @@ if st.button("Check News"):
         st.write(f"### Confidence Score: {round(confidence,2)}%")
         st.progress(int(confidence))
     
+
 
 
 
