@@ -26,8 +26,12 @@ if st.button("check news"):
     cleaned = clean_text(news_input)
     vectorized = vectorizer.transform([cleaned])
     prediction = model.predict(vectorized)
+    probability = model.predict_proba(vectorized)[0]
 
-    if prediction[0]==1:
-        st.success("This is Real News")
+    if prediction[0] == 1:
+        st.success("🟢 This is Real News")
+        st.write("Confidence:", round(probability[1]*100, 2), "%")
     else:
-        st.error("This is Fake News")
+        st.error("🔴 This is Fake News")
+        st.write("Confidence:", round(probability[0]*100, 2), "%")
+
