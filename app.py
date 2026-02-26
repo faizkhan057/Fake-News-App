@@ -38,13 +38,15 @@ st.title("Fake News Detection App")
 news_input = st.text_area("Enter News Text Here")
 
 #button
-if st.button("check news"):
+if news_input.strip() == "":
+    st.warning("⚠ Please enter some news text.")
+else:
     cleaned = clean_text(news_input)
     vectorized = vectorizer.transform([cleaned])
     prediction = model.predict(vectorized)
     probability = model.predict_proba(vectorized)[0]
 
-    if prediction[0] == 1:
+    if int(prediction[0]) == 1:
         st.success("🟢 This is Real News")
         confidence = probability[1] * 100
     else:
@@ -52,7 +54,6 @@ if st.button("check news"):
         confidence = probability[0] * 100
 
     st.write(f"### Confidence Score: {round(confidence,2)}%")
-
     st.progress(int(confidence))
 
 
